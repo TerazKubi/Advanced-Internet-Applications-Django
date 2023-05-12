@@ -1,0 +1,34 @@
+<head>
+    <title>Movie</title>
+</head>
+<body>
+    
+
+{% if movie %}
+
+    <h1>
+        {{movie.title}}
+    </h1>
+    <h3>
+        Genres:
+    </h3>
+    <ul>
+        {% for genre in movie.genres.all %}
+            <li><a href="/genre/{{ genre.id }}">{{ genre.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+
+    {% if user.is_authenticated %}
+        <p><a href="/rateMovie/{{ movie.id }}">Rate this movie</a></p>
+        
+    {% endif%}
+
+{% else %}
+
+    <p>No movie.</p>
+
+{% endif %}
+
+
+</body>

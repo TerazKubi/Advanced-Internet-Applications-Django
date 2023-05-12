@@ -1,0 +1,23 @@
+{% extends "userview/header.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+<!--rate-->
+    <div class="container py-5">
+    <h1>Rate movie {{ movie.title }}</h1>
+
+    <form method="POST">
+    {% csrf_token %}
+
+    {{ rate_form|crispy }}
+
+    <button class="btn btn-primary" type="submit">Rate</button>
+    </form>
+    
+    </div>
+
+
+
+
+{% endblock %}

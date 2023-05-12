@@ -1,0 +1,52 @@
+<head>
+    <title>Home</title>
+</head>
+<body>
+    
+    {% if user.is_authenticated %}
+    <p>{{ user }}</p>
+    {% endif %}
+
+
+
+{% if movies %}
+<h2>Movies:</h2>
+<ul>
+{% for movie in page_obj %}
+<li><a href="/movie/{{movie.id}}">{{ movie.title }}</a></li>
+{% endfor %}
+</ul>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div><br><br>
+
+    {% if user.is_authenticated %}
+    <p>You are logged in.</p>
+    <a href="/userRatings">See your ratings</a><br><br>
+    <a href="/logout">Logout</a>
+    {% else %}
+    <p>you are not logged in</p>
+    <a href="/login">Login</a>
+    {% endif %}
+
+{% else %}
+<p>No movies are available.</p>
+{% endif %}
+
+
+</body>

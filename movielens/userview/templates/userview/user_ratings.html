@@ -1,0 +1,19 @@
+<head>
+    <title>User ratings</title>
+</head>
+<body>
+
+    <h2>Movies rated by user {{ user }}</h2>
+
+
+    {% if ratings %}
+        <ul>
+            {% for rating in ratings.all %}
+            <li>{{ rating.movie }}  <a href="/movie/{{ rating.movie.id }}">Read more...</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+    <a href="/">Go back</a>
+
